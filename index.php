@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("config/config.php");
-$bdd = new bdd;
+$bdd = new Bdd;
 $bdd->connect();
 
 $users = $bdd->getAllUsers();
@@ -21,8 +21,6 @@ if (isset($_POST['connexion'])) {
         $message = "Une case est vide";
     }
 }
-
-$bdd->Disconnect();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -38,16 +36,21 @@ $bdd->Disconnect();
     <header class="bg-red-900">
         <nav class="flex justify-center items-center gap-10 h-24">
             <a class="underline text-white text-lg" href="connexion.php">Connexion</a>
-            <?php if (isset($_SESSION["user"])) { ?>
-                <a class="underline text-white text-lg" href="admin.php">Admin</a>
+            <?php if (isset($_SESSION["user"])) {
+                if ($_SESSION["user"]["statut"] == "admin") { ?>
+                    <a class="underline text-white text-lg" href="admin.php">Admin</a>
+                <?php } ?>
                 <a class="border-2 border-black rounded-lg bg-white underline p-2" href="logout.php">Déconnexion</a>
             <?php } ?>
         </nav>
     </header>
     <main class="flex items-center flex-col mt-24">
-       <section class="border-2 border-black p-5">
-            <p>Info utilisateur</p>
-       </section>
+        <?php foreach ($bdd->getAllPosts() as $post) { ?>
+            <section class="flex flex-col gap-5 mb-5 rounded-lg border-2 border-black p-2 w-[50vw] h-auto">
+                <p class="text-2xl underline text-center"><?php print $post["titre"]; ?></p>
+                <p><?php print $post["post"]; ?></p>
+            </section>
+        <?php } ?>
     </main>
 </body>
 

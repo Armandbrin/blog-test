@@ -18,6 +18,7 @@ if (isset($_POST['inscription'])) {
     $newUser->setEmail($email);
     $newUser->setMdp(password_hash($mdp, PASSWORD_ARGON2ID));
     $newUser->setAge($age);
+    $newUser->setStatut("user");
 
     $bdd->addUser($newUser);
 }

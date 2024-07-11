@@ -4,12 +4,24 @@
 
 class users{
 
+    private $id;
     private $nom;
     private $prenom;
     private $email;
     private $mdp;
     private $age;
+    private $statut;
 
+    public function setId($id){
+
+        $this->id = $id;
+
+    }
+    public function getId(): string {
+
+        return $this->id;
+
+    }
     public function setNom($nom){
 
         $this->nom = $nom;
@@ -63,6 +75,17 @@ class users{
 
         return $this->age;
         
+    }
+
+    public function setStatut($statut){
+
+        $this->statut = $statut;
+
+    }
+    public function getStatut(): string {
+
+        return $this->statut;
+
     }
     
 }
