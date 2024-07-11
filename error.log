@@ -1,0 +1,5 @@
+PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'contenu' in 'field list' in C:\xampp\htdocs\Blog-test\config\config.php:113
+Stack trace:
+#0 C:\xampp\htdocs\Blog-test\config\config.php(113): PDOStatement->execute()
+#1 C:\xampp\htdocs\Blog-test\admin.php(28): Bdd->modif(Object(posts))
+#2 {main}
